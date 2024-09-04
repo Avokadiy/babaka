@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_reset.css">
+    <link rel="stylesheet" href="index.css">
+    <title>ДЗ модуль 5</title>
+</head>
+
+<body>
+    <header>
+        <h1>Библиотека книг</h1>
+    </header>
+    <main>
+        <div class="catalog">
+            <aside class="catalog-filter">
+                <h2>Меню</h2>
+                <button class="add_book">Добавить книгу</button>
+                <button class="refresh">Обновить страницу</button>
+                <button class="clear_list">Удалить все книги</button>
+            </aside>
+
+            <section class="catalog-list">
+                <h2>Список книг</h2>
+                <div class="catalog-items">
+                    <!-- Список книг через JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Окошко Popup -->
+        <div class="popupbg">
+            <div class="popup">
+                <img src="images/close.png" class="close_popup">
+                <label> Название книги
+                    <input type="text" id="bookName">
+                </label>
+                <label> Имя автора
+                    <input type="text" id="bookAuthor">
+                </label>
+                <label> Год издания
+                    <input type="number" id="bookDate">
+                </label>
+                <label> Жанр книги
+                    <select id="bookGenre">
+                        <option>Комедия</option>
+                        <option>Трагедия</option>
+                        <option>Эпическое</option>
+                        <option>Лирическое</option>
+                        <option>Драма</option>
+                    </select>
+                </label>
+                <label> Прочтена ли книга?
+                    <input id="bookStatus" type="checkbox">
+                </label>
+                <label>
+                    <button class="submit" id="bookSubmit">Добавить книгу в библиотеку</button>
+                </label>
+            </div>
+        </div>
+        <!-- Окошко Popup с книгой -->
+        <div class="popupbgChange">
+            <div class="popupChange">
+                <img src="images/close.png" class="close_popupChange">
+
+                <label for="bookNameChange">Название книги</label>
+                <input type="text" class="bookNameChange">
+
+                <label for="bookAuthorChange">Имя автора</label>
+                <input type="text" class="bookAuthorChange">
+
+                <label for="bookDateChange">Год издания</label>
+                <input type="number" class="bookDateChange">
+
+                <label for="bookGenreChange">Жанр книги</label>
+                <select class="bookGenreChange">
+                    <option>Комедия</option>
+                    <option>Трагедия</option>
+                    <option>Эпическое</option>
+                    <option>Лирическое</option>
+                    <option>Драма</option>
+                </select>
+
+                <label for="bookStatusChange">Прочтена ли книга?
+                    <input class="bookStatusChange" type="checkbox">
+                </label>
+
+                    <button class="bookChange">Изменить книгу</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

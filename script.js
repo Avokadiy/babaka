@@ -228,6 +228,30 @@ function showDramaBooks() {
         createDOM(book);
     });
 }
+ 
+filterStatusTrueDOM = document.querySelector(".filterStatusTrue");
+filterStatusTrueDOM.addEventListener('click', showStatusTrue);
+
+function showStatusTrue() {
+    const book = bookList.filter((book) => book.status == true);
+
+    itemsDOM.replaceChildren();
+    book.forEach(book => {
+        createDOM(book);
+    });
+}
+
+filterStatusFalseDOM = document.querySelector(".filterStatusFalse");
+filterStatusFalseDOM.addEventListener('click', showStatusFalse);
+
+function showStatusFalse() {
+    const book = bookList.filter((book) => book.status == false);
+
+    itemsDOM.replaceChildren();
+    book.forEach(book => {
+        createDOM(book);
+    });
+}
 
 //JS для кол-ва книг
 

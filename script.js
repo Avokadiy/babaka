@@ -58,7 +58,7 @@ function createDOM(newBook) {
     deleteDOM.addEventListener('click', () => {
         deleteBook(currentBookNumber);
     });
-    
+
     const changeDOM = document.createElement("button");
     const changeContent = document.createTextNode("Изменить книгу");
     changeDOM.appendChild(changeContent);
@@ -109,22 +109,12 @@ function deleteBook(bookNumber) {
 }
 // JS для изменения книги
 
-function changeBook(book, index) {
+function changeBook(book) {
     const popupbgChangeDOM = document.querySelector(".popupbgChange");
     const popupChangeDOM = document.querySelector(".popupChange");
-    const closePopupChangeDOM = document.querySelector(".close_popupChange");
 
     popupbgChangeDOM.classList.add("active");
     popupChangeDOM.classList.add("active");
-
-    function closePopopChange() {
-        popupbgChangeDOM.classList.remove("active");
-        popupChangeDOM.classList.remove("active");
-    }
-
-    closePopupChangeDOM.addEventListener("click", () => {
-        closePopopChange();
-    });
 
     const nameValue = document.querySelector(".bookNameChange");
     const authorValue = document.querySelector(".bookAuthorChange");
@@ -137,10 +127,9 @@ function changeBook(book, index) {
     dateValue.value = book.date;
     genreValue.value = book.genre;
     statusValue.checked = book.status;
-    
-    const changeDOM = document.querySelector(".bookChange");
 
-    changeDOM.addEventListener('click', () => {
+    const changeDOM = document.querySelector(".bookChange");
+    const saveBookListener = () => {
         book.name = document.querySelector(".bookNameChange").value;
         book.author = document.querySelector(".bookAuthorChange").value;
         book.date = document.querySelector(".bookDateChange").value;
@@ -149,10 +138,103 @@ function changeBook(book, index) {
 
         localStorage.setItem('bookList', JSON.stringify(bookList));
 
-        console.log(book);
-        console.log(index);
+        itemsDOM.replaceChildren();
 
-        closePopopChange();
+        bookList.forEach(newBook => {
+            createDOM(newBook);
+        });
+
+        closeBookListener();
+        changeDOM.removeEventListener('click', saveBookListener);
+    };
+
+    changeDOM.addEventListener('click', saveBookListener, {
+        once: true
+    });
+
+    const closePopupChangeDOM = document.querySelector(".close_popupChange");
+    const closeBookListener = () => {
+        const popupbgChangeDOM = document.querySelector(".popupbgChange");
+        const popupChangeDOM = document.querySelector(".popupChange");
+
+        popupbgChangeDOM.classList.remove("active");
+        popupChangeDOM.classList.remove("active");
+
+        closePopupChangeDOM.removeEventListener("click", closeBookListener);
+    };
+
+    closePopupChangeDOM.addEventListener("click", closeBookListener, {
+        once: true
+    });
+};
+
+//JS для фильтра книг
+const filterComedyDOM = document.querySelector(".filterComedy");
+filterComedyDOM.addEventListener('click', showComedyBooks);
+
+const filterTragedyDOM = document.querySelector(".filterTragedy");
+filterTragedyDOM.addEventListener('click', showTragedyBooks);
+
+const filterEpicDOM = document.querySelector(".filterEpic");
+filterEpicDOM.addEventListener('click', showEpicBooks);
+
+const filterLyricsDOM = document.querySelector(".filterLyrics");
+filterLyricsDOM.addEventListener('click', showLyricsBooks);
+
+const filterDramaDOM = document.querySelector(".filterDrama");
+filterDramaDOM.addEventListener('click', showDramaBooks);
+
+function showComedyBooks() {
+    const book = bookList.filter((book) => book.genre == 'Комедия');
+
+    itemsDOM.replaceChildren();
+    book.forEach(book => {
+        createDOM(book);
     });
 }
-// заменить на DOM константы
+
+function showTragedyBooks() {
+    const book = bookList.filter((book) => book.genre == 'Трагедия');
+
+    itemsDOM.replaceChildren();
+    book.forEach(book => {
+        createDOM(book);
+    });
+}
+
+function showEpicBooks() {
+    const book = bookList.filter((book) => book.genre == 'Эпическое');
+
+    itemsDOM.replaceChildren();
+    book.forEach(book => {
+        createDOM(book);
+    });
+}
+
+function showLyricsBooks() {
+    const book = bookList.filter((book) => book.genre == 'Лирическое');
+
+    itemsDOM.replaceChildren();
+    book.forEach(book => {
+        createDOM(book);
+    });
+}
+
+function showDramaBooks() {
+    const book = bookList.filter((book) => book.genre == 'Драма');
+
+    itemsDOM.replaceChildren();
+    book.forEach(book => {
+        createDOM(book);
+    });
+}
+
+//JS для кол-ва книг
+
+const catalogListDOM = document.querySelector('.catalog_list');
+const bookCounter = document.createElement("div");
+bookCounter.className = "booksCounter";
+bookCounter.innerHTML = `
+    <p>Количество книг в библиотеке: ${bookList.length}<p>
+`;
+catalogListDOM.appendChild(bookCounter);

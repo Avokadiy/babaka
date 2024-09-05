@@ -14,12 +14,25 @@
         <h1>Библиотека книг</h1>
     </header>
     <main>
+        <body>
+            
+        </body>
         <div class="catalog">
-            <aside class="catalog-filter">
+            <aside class="catalog_list">
                 <h2>Меню</h2>
                 <button class="add_book">Добавить книгу</button>
                 <button class="refresh">Обновить страницу</button>
                 <button class="clear_list">Удалить все книги</button>
+                <div class="dropdown_list">
+                    <button class="dropdown_button">Отфильтровать книги</button>
+                    <div class="list">
+                        <li class="filterComedy">Комедия</li>
+                        <li class="filterTragedy">Трагедия</li>
+                        <li class="filterEpic">Эпическое</li>
+                        <li class="filterLyrics">Лирическое</li>
+                        <li class="filterDrama">Драма</li>
+                    </div>
+                </div>
             </aside>
 
             <section class="catalog-list">
@@ -87,7 +100,7 @@
                     <input class="bookStatusChange" type="checkbox">
                 </label>
 
-                    <button class="bookChange">Изменить книгу</button>
+                <button class="bookChange">Изменить книгу</button>
             </div>
         </div>
     </main>
